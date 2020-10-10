@@ -1,0 +1,12 @@
+127.0.0.1			localhost
+
+192.168.0.1			router
+
+# Mac downstairs
+192.168.0.10			tvmini
+192.168.0.11			tvpi
+192.168.0.12			deskmini
+192.168.0.13			deskpi1
+192.168.0.14			deskpi2
+192.168.0.15			deskbone
+192.168.0.50			mini-svr

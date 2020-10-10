@@ -1,0 +1,5 @@
+XKBMODEL="pc105"
+XKBLAYOUT="us"
+XKBVARIANT=""
+XKBOPTIONS="terminate:ctrl_alt_bksp,ctrl:nocaps"
+BACKSPACE="guess"

@@ -1,0 +1,2 @@
+(setf (logical-pathname-translations "ql")
+      '(("ql:**;*.*.*" "/Users/barry/quicklisp/**/*.*")))

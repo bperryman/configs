@@ -1,0 +1,22 @@
+<VirtualHost *:80>
+	ServerAdmin webmaster@localhost
+
+	DocumentRoot /storage/webdav/web/
+	<Directory /storage/webdav/web/>
+		Options Indexes MultiViews
+		AllowOverride None
+		Order allow,deny
+		allow from all
+	</Directory>
+
+	Alias /webdav /storage/webdav/web
+
+	<Location /webdav>
+		DAV On
+		AuthType Basic
+		AuthName "webdav"
+		AuthUserFile /storage/webdav/passwd.dav
+		Require valid-user
+	</Location>
+
+</VirtualHost>

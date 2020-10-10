@@ -1,0 +1,5 @@
+[read-line]
+S-right: complete-bar-next
+S-tab: complete-bar
+S-left: complete-bar-prev
+
