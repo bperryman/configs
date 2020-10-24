@@ -2,8 +2,8 @@
 " Setting this stuff up
 "
 " First off change to a package directory
-"     mkdir -p ${HOME}/.vim/pack/my-packages/start
-"     cd ${HOME}/.vim/pack/my-packages/start
+"     mkdir -p ${HOME}/.vim/pack/plugins/start
+"     cd ${HOME}/.vim/pack/plugins/start
 "
 " atomified - color scheme
 "     git clone https://github.com/Siphalor/vim-atomified.git
