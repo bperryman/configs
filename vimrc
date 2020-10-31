@@ -1,4 +1,3 @@
-
 " Setting this stuff up
 "
 " First off change to a package directory
@@ -11,6 +10,8 @@
 "     git clone https://github.com/vim-airline/vim-airline.git
 " syntastic:
 "     git clone https://github.com/vim-syntastic/syntastic.git
+" tagbar:
+"     git clone https://github.com/preservim/tagbar.git
 " julia:
 "     git clone git://github.com/JuliaEditorSupport/julia-vim.git
 " rust:
@@ -34,10 +35,7 @@ set expandtab
 
 set path=**,,
 
-map <F2> :set sw=2:set ts=2
-map <F4> :set sw=4:set ts=4
-map <F8> :set sw=8:set ts=8
-
+" *** INITIAL MISC CONFIGURATION AND SETUP ***
 " Configuration for tmux in vim-slime
 let g:slime_target = "tmux"
 
@@ -56,7 +54,12 @@ filetype plugin indent on
 syntax enable
 syntax on
 
-" configuration for python and to make it better to work with in vim
+" *** TAGBAR ***
+" Configuration for tagbar
+map <F8> :TagbarToggle<CR>
+
+
+" *** PYTHON ***
 au BufNewFile,BufRead *.py
     \ set tabstop=4
     \ set softtabstop=4
@@ -66,7 +69,7 @@ au BufNewFile,BufRead *.py
     \ set autoindent
     \ set fileformat=unix
 
-" A bit of configuration for go
+" *** GO ***
 let mapleader = ","
 let $PATH .= ':' . $HOME . '/go/bin:' . $HOME . '/opt/go/bin'
 let $GOROOT = $HOME . '/opt/go'
@@ -88,10 +91,10 @@ autocmd FileType go nmap <Leader>v <Plug>(go-vet)
 " Configuration for airline
 " let g:airline_powerline_fonts = 1
 
-" Configuration for erlang and elixir
+" *** ERLANG & ELIXIR ***
 let $PATH .= ':' . $HOME . '/opt/erlang/bin:' . $HOME . '/opt/elixir/bin'
 
-" Syntatic setup - to be reviewed
+" *** SYNTATIC ***
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
@@ -101,22 +104,21 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" configuration for rust
+" *** RUST ***
 " This next line is probably more of a work-around than it should be
 autocmd FileType rust let g:syntastic_rust_checkers = ['rustc']
 let $PATH .= ':' . $HOME . '/.cargo/bin'
 let g:rustfmt_autosave = 1
 
 
-let g:slime_target = "tmux"
 
-
-" Finally setus up for GUI stuff
+" Finally setup up for GUI stuff
 if has("gui_running")
     set lines=45
     set columns=95
     set guifont=Menlo-Regular:h13
 endif
 
+" Last but not least make it pretty!
 colorscheme atomified
 
