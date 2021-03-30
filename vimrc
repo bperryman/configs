@@ -15,7 +15,11 @@
 " julia:
 "     git clone git://github.com/JuliaEditorSupport/julia-vim.git
 " rust:
-"     git clone https://github.com/rust-lang/rust.vim.git
+"     git clone --depth 1 https://github.com/rust-lang/rust.vim.git
+"     git clone --depth 1 https://github.com/prabirshrestha/async.vim
+"     git clone --depth 1 https://github.com/prabirshrestha/vim-lsp
+"     git clone --depth 1 https://github.com/prabirshrestha/asyncomplete.vim
+"     git clone --depth 1 https://github.com/prabirshrestha/asyncomplete-lsp.vim
 " go:
 "     git clone https://github.com/fatih/vim-go.git
 " elixir:
@@ -61,19 +65,19 @@ map <F8> :TagbarToggle<CR>
 
 " *** PYTHON ***
 au BufNewFile,BufRead *.py
-    \ set tabstop=4
-    \ set softtabstop=4
-    \ set shiftwidth=4
-    \ set textwidth=79
-    \ set expandtab
-    \ set autoindent
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
     \ set fileformat=unix
 
 " *** GO ***
 let mapleader = ","
-let $PATH .= ':' . $HOME . '/go/bin:' . $HOME . '/opt/go/bin'
+let $PATH .= ':' . $HOME . '/vimgo/bin:' . $HOME . '/go/bin:' . $HOME . '/opt/go/bin'
 let $GOROOT = $HOME . '/opt/go'
-let $GOPATH = $HOME . '/go:' . $HOME . '/learning/go:' . $HOME . '/goprojects'
+let $GOPATH = $HOME . '/vimgo:' . $HOME . '/go'
 
 let g:go_fmt_command = "goimports"
 map <C-n> :cnext<CR>
@@ -109,14 +113,22 @@ let g:syntastic_check_on_wq = 0
 autocmd FileType rust let g:syntastic_rust_checkers = ['rustc']
 let $PATH .= ':' . $HOME . '/.cargo/bin'
 let g:rustfmt_autosave = 1
+if executable('rls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'rls',
+        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
+        \ 'whitelist': ['rust'],
+        \ })
+endif
 
 
 
 " Finally setup up for GUI stuff
 if has("gui_running")
-    set lines=45
-    set columns=95
-    set guifont=Menlo-Regular:h13
+    set lines=60
+    set columns=120
+    " set guifont=Menlo-Regular:h13
+    " set guifont=Ubuntu\ Mono\ 16
 endif
 
 " Last but not least make it pretty!
