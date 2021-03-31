@@ -109,6 +109,13 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " *** RUST ***
+" We need to run the following on the command line
+" rustup self update
+" rustup install nightly
+" rustup component add rls-preview --toolchain nightly
+" rustup component add rust-analysis --toolchain nightly
+" rustup component add rust-src --toolchain nightly
+
 " This next line is probably more of a work-around than it should be
 autocmd FileType rust let g:syntastic_rust_checkers = ['rustc']
 let $PATH .= ':' . $HOME . '/.cargo/bin'
