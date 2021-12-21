@@ -4,7 +4,7 @@
 ;; optional setting of a font
 (when (display-graphic-p)
   ; (set-face-attribute 'default nil :font "Consolas-14")
-  (set-face-attribute 'default nil :font "Monaco-12")
+  ; (set-face-attribute 'default nil :font "Monaco-12")
   (add-to-list 'default-frame-alist '(height . 45))
   (add-to-list 'default-frame-alist '(width . 80))
   (set-frame-width (selected-frame) 80)
@@ -29,9 +29,8 @@
   (require 'package)
   (add-to-list
    'package-archives
-   '("melpa" . "http://melpa.org/packages/")
+   '("melpa" . "https://melpa.org/packages/")
    t)
   (package-initialize))
 
-(load "~/.emacs.d/go-setup")
-(load "~/.emacs.d/slime-setup")
+(load "~/.emacs.d/sly-setup")
