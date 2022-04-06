@@ -1,3 +1,8 @@
+(defun disble-tabs ()
+  (setq indent-tabs-mode nil))
+
+(add-hook 'lisp-mode-hook 'disable-tabs)
+
 (defvar *lisp-packages*
   '(paredit sly)
   "My packages!")
@@ -14,7 +19,14 @@
 ;;;; Setup for sly
 ; (setq inferior-lisp-program "/home/pi/opt/ccl/scripts/ccl")
 (setq sly-lisp-implementations
-      '((ccl ("/home/pi/opt/ccl/armcl")
-             :coding-system utf-8-unix)
-        (sbcl ("/home/pi/opt/sbcl/bin/sbcl")
-              :env ("SBCL_HOME=/home/pi/opt/sbcl/lib/sbcl"))))
+      '((sbcl ("/home/barry/opt/sbcl/bin/sbcl")
+              :env ("SBCL_HOME=/home/barry/opt/sbcl/lib/sbcl"))))
+
+
+(autoload 'enable-paredit-mode "paredit" "Turn on pseudo-structural editing of Lisp code." t)
+(add-hook 'emacs-lisp-mode-hook       #'enable-paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'enable-paredit-mode)
+(add-hook 'ielm-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-mode-hook             #'enable-paredit-mode)
+(add-hook 'lisp-interaction-mode-hook #'enable-paredit-mode)
+(add-hook 'scheme-mode-hook           #'enable-paredit-mode)
