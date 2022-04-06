@@ -19,9 +19,11 @@
 (setq global-font-lock-mode t)
 (setq global-auto-revert-mode t)
 (setq-default tab-width 4)
+;; Use spaces, not tabs - https://www.emacswiki.org/emacs/NoTabs
+(setq-default indent-tabs-mode nil)
 
-;; Allow hash to be entered  
-(global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
+;; Allow hash to be entered on a UK keyboard
+;; (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "#")))
 
 
 ;;Load package-install sources
