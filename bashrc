@@ -52,3 +52,7 @@ function resetocaml {
 	eval `opam config env`
 }
 
+# Cuis functionality for linux based systems.
+function cuis {
+      (cd ${HOME}/opt/cuis/Cuis-Smalltalk-Dev; SQUEAK_IMAGE=$(zenity --title 'Select an image' --file-selection --filename "${HOME}/opt/cuis/Cuis-Smalltalk-Dev/" --file-filter '*.image' --file-filter '*') squeak > ${HOME}/.cuis.log 2>&1 &)
+}
