@@ -1,3 +1,4 @@
+
 " Setting this stuff up
 "
 " First off change to a package directory
@@ -27,6 +28,8 @@
 "     git clone https://github.com/slashmili/alchemist.vim.git
 " vim slime:
 "     git clone https://github.com/jpalardy/vim-slime.git
+" Slime mode for vim and lisp interaction
+"     git clone https://github.com/kovisoft/slimv.git
 " 
 
 set ic
@@ -86,6 +89,7 @@ map <C-m> :cprevious<CR>
 nnoremap <leader>a :cclose<CR>
 autocmd FileType go nmap <leader>b <Plug>(go-build)
 autocmd FileType go nmap <leader>r <Plug>(go-run)
+autocmd FileType go nmap <leader>d <Plug>(go-doc)
 autocmd FileType go nmap <leader>t <Plug>(go-test)
 autocmd FileType go nmap <Leader>i <Plug>(go-info)
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
@@ -94,9 +98,6 @@ autocmd FileType go nmap <Leader>v <Plug>(go-vet)
 
 " Configuration for airline
 " let g:airline_powerline_fonts = 1
-
-" *** ERLANG & ELIXIR ***
-let $PATH .= ':' . $HOME . '/opt/erlang/bin:' . $HOME . '/opt/elixir/bin'
 
 " *** SYNTATIC ***
 set statusline+=%#warningmsg#
@@ -108,31 +109,20 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
-" *** RUST ***
-" We need to run the following on the command line
-" rustup self update
-" rustup install nightly
-" rustup component add rls-preview --toolchain nightly
-" rustup component add rust-analysis --toolchain nightly
-" rustup component add rust-src --toolchain nightly
-
-" This next line is probably more of a work-around than it should be
-autocmd FileType rust let g:syntastic_rust_checkers = ['rustc']
-let $PATH .= ':' . $HOME . '/.cargo/bin'
-let g:rustfmt_autosave = 1
-if executable('rls')
-    au User lsp_setup call lsp#register_server({
-        \ 'name': 'rls',
-        \ 'cmd': {server_info->['rustup', 'run', 'nightly', 'rls']},
-        \ 'whitelist': ['rust'],
-        \ })
+" Configuration for slimv
+if has("gui_running")
+    let g:slimv_swank_cmd = '! xterm -e /home/barry/opt/sbcl/bin/sbcl --load /home/barry/.vim/pack/plugins/start/slimv/slime/start-swank.lisp &'
+else
+    let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-SBCL "sbcl --load /home/barry/.vim/pack/plugins/start/slimv/slime/start-swank.lisp"'
 endif
+set cursorline
+set cursorcolumn
 
 
 
 " Finally setup up for GUI stuff
 if has("gui_running")
-    set lines=60
+    set lines=50
     set columns=120
     " set guifont=Menlo-Regular:h13
     " set guifont=Ubuntu\ Mono\ 16
