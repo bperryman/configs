@@ -43,7 +43,7 @@ set path=**,,
 
 " *** INITIAL MISC CONFIGURATION AND SETUP ***
 " Configuration for tmux in vim-slime
-let g:slime_target = "tmux"
+let g:slime_target = "vimterminal"
 
 " Configuration for splits and windows
 nnoremap <C-J> <C-W><C-J>
@@ -88,11 +88,15 @@ map <C-m> :cprevious<CR>
 nnoremap <leader>a :cclose<CR>
 autocmd FileType go nmap <leader>b <Plug>(go-build)
 autocmd FileType go nmap <leader>r <Plug>(go-run)
-autocmd FileType go nmap <leader>d <Plug>(go-doc)
 autocmd FileType go nmap <leader>t <Plug>(go-test)
 autocmd FileType go nmap <Leader>i <Plug>(go-info)
 autocmd FileType go nmap <Leader>c <Plug>(go-coverage-toggle)
 autocmd FileType go nmap <Leader>v <Plug>(go-vet)
+autocmd FileType go nmap <leader>d <Plug>(go-doc)
+
+" SML Mode
+let $PATH .= ':' . $HOME . '/opt/poly/bin'
+
 
 
 " Configuration for airline
@@ -109,22 +113,16 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " Configuration for slimv
-if has("gui_running")
-    let g:slimv_swank_cmd = '! xterm -e /home/barry/opt/sbcl/bin/sbcl --load /home/barry/.vim/pack/plugins/start/slimv/slime/start-swank.lisp &'
-else
-    let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-SBCL "sbcl --load /home/barry/.vim/pack/plugins/start/slimv/slime/start-swank.lisp"'
-endif
-" set cursorline
-" set cursorcolumn
-
-
+let g:slimv_swank_cmd = '!osascript -e "tell application \"Terminal\" to do script \"sbcl --load ~/.vim/pack/plugins/start/slimv/slime/start-swank.lisp\""'
 
 " Finally setup up for GUI stuff
 if has("gui_running")
-    set lines=50
+    set lines=60
     set columns=120
     " set guifont=Menlo-Regular:h13
     " set guifont=Ubuntu\ Mono\ 16
     " Last but not least make it pretty!
     colorscheme atomified
 endif
+
+
