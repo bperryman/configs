@@ -12,6 +12,7 @@ lock_ key to be a _control_ key, just copy the lxkeymap.cfg to the
 
 ```
 cp lxkeymap.cfg ~/.config
+cp keyboard /etc/default
 ```
 
 This comes from [here](http://shallowsky.com/blog/linux/raspbian-ctrl-key.html)
