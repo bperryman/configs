@@ -1,0 +1,10 @@
+# KEYBOARD CONFIGURATION FILE
+
+# Consult the keyboard(5) manual page.
+
+XKBMODEL="pc86"
+XKBLAYOUT="gb"
+XKBVARIANT=""
+XKBOPTIONS="altwin:swap_alt_win,ctrl:nocaps,terminate:ctrl_alt_bksp"
+
+BACKSPACE="guess"
