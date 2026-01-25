@@ -30,6 +30,9 @@
 "     git clone https://github.com/jpalardy/vim-slime.git
 " Slime mode for vim and lisp interaction
 "     git clone https://github.com/kovisoft/slimv.git
+" vimwiki:
+"     git clone https://github.com/vimwiki/vimwiki.git
+"     :helptags ~/.vim/pack/plugins/start/vimwiki/doc
 " 
 
 set ic
@@ -39,8 +42,9 @@ set ts=4
 set sw=4
 set nowrap
 set expandtab
-
 set path=**,,
+
+let mapleader = ","
 
 " *** INITIAL MISC CONFIGURATION AND SETUP ***
 " Configuration for tmux in vim-slime
@@ -57,9 +61,14 @@ set foldmethod=indent
 set foldlevel=99
 nnoremap <space> za
 
+set nocompatible
 filetype plugin indent on
 syntax enable
 syntax on
+
+" Configuration for vimwiki
+let g:vimwiki_list = [{'path': '~/src/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': 'md'}]
 
 " *** TAGBAR ***
 " Configuration for tagbar
@@ -77,7 +86,6 @@ au BufNewFile,BufRead *.py
     \ set fileformat=unix
 
 " *** GO ***
-let mapleader = ","
 let $PATH .= ':' . $HOME . '/vimgo/bin:' . $HOME . '/go/bin:' . $HOME . '/opt/go/bin'
 let $GOROOT = $HOME . '/opt/go'
 let $GOPATH = $HOME . '/vimgo:' . $HOME . '/go'
