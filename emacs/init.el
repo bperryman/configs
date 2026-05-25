@@ -4,11 +4,11 @@
 ;; optional setting of a font
 (when (display-graphic-p)
   ; (set-face-attribute 'default nil :font "Consolas-14")
-  ; (set-face-attribute 'default nil :font "Monaco-12")
-  (add-to-list 'default-frame-alist '(height . 45))
+  ; (set-face-attribute 'default nil :font "Liberation Mono-14")
+  (add-to-list 'default-frame-alist '(height . 50))
   (add-to-list 'default-frame-alist '(width . 80))
   (set-frame-width (selected-frame) 80)
-  (set-frame-height (selected-frame) 45))
+  (set-frame-height (selected-frame) 50))
 
 (setq column-number-mode t)
 (setq mouse-wheel-follow-mouse t)
@@ -35,4 +35,19 @@
    t)
   (package-initialize))
 
+(load "~/.emacs.d/theme.el")
 (load "~/.emacs.d/sly-setup")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
+ '(package-selected-packages nil))
+
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
