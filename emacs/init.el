@@ -35,8 +35,10 @@
    t)
   (package-initialize))
 
-(load "~/.emacs.d/theme.el")
-(load "~/.emacs.d/sly-setup")
+(load "~/.emacs.d/theme")
+(load "~/.emacs.d/slime-setup")
+; (load "~/.emacs.d/sly-setup")
+; (load "~/.emacs.d/scheme-setup")
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
