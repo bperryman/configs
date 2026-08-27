@@ -56,11 +56,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w \$\[\033[00m\] '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
+PS1='$ '
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
@@ -86,11 +82,6 @@ fi
 
 # colored GCC warnings and errors
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-#alias ll='ls -l'
-#alias la='ls -A'
-#alias l='ls -CF'
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
@@ -134,13 +125,14 @@ PATH=${PATH}:${HOME}/opt/mlton/bin
 alias poly='rlwrap poly'
 alias sml='rlwrap sml'
 
-# Setup for go
+# Setup for go and tinygo
 PATH=${PATH}:${HOME}/go/bin
 PATH=${PATH}:${HOME}/opt/go/bin
 
 activate-tinygo () {
     oldpath=${PATH}
-    PATH=${HOME}/opt/go-for-tiny-go/bin:${PATH}:${HOME}/opt/tinygo/bin
+    PATH=${PATH}:${HOME}/opt/tinygo/bin
+    # PATH=${HOME}/opt/go-for-tiny-go/bin:${PATH}:${HOME}/opt/tinygo/bin
 }
 
 deactivate-tinygo () {
@@ -153,22 +145,27 @@ activate-ytd () {
     source ${HOME}/pyenvs/ytd/bin/activate
 }
 
-# Configuration for cuis smalltalk
+# Configuration for smalltalk
 cuis-images () {
-    (cd ${HOME}/opt/cuis/Cuis-Smalltalk-Dev/CuisImage/; ls *.image)
+    (cd ${HOME}/opt/cuis/Cuis-Smalltalk-Dev/CuisImage; ls *.image | sed 's/\.image//')
 }
 
 cuis () {
-    (cd ${HOME}/opt/cuis/Cuis-Smalltalk-Dev/CuisImage; ../RunCuisOnLinux.sh ${1} > ${HOME}/.cuis-run.log 2>&1 &)
+    if [ $# -eq 1 ]; then
+        (cd ${HOME}/opt/cuis/Cuis-Smalltalk-Dev/CuisImage; ../RunCuisOnLinux.sh ${1}.image > ${HOME}/.cuis-run.log 2>&1 &)
+    else
+        (cd ${HOME}/opt/cuis/Cuis-Smalltalk-Dev/CuisImage; ../RunCuisOnLinux.sh > ${HOME}/.cuis-run.log 2>&1 &)
+    fi
 }
-
-# Configuration for DOTNET
-export DOTNET_ROOT=${HOME}/opt/dotnet
-PATH=${PATH}:${DOTNET_ROOT}
-. "$HOME/.cargo/env"
 
 # Configuration for agon light emulation
 PATH=${PATH}:${HOME}/opt/agon/bin
 
 # Add in the path for new python
 PATH=${HOME}/opt/python/bin:${PATH}
+
+# Setup for sublime
+PATH=${PATH}:${HOME}/opt/sublime_text
+subl () {
+    sublime_text $* > ~/.sublime-text.out 2>&1 
+}
