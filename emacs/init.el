@@ -39,6 +39,7 @@
 (load "~/.emacs.d/slime-setup")
 ; (load "~/.emacs.d/sly-setup")
 ; (load "~/.emacs.d/scheme-setup")
+; (load "~/.emacs.d/sml-setup")
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
