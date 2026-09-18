@@ -1,5 +1,5 @@
 (defvar *sml-packages*
-  '(sml-mode)
+  '(sml-mode smlfmt)
   "My packages!")
 
 ;; fetch the list of packages available
@@ -14,3 +14,9 @@
 (add-to-list 'exec-path "/Users/barry/opt/poly/bin")
 (add-to-list 'exec-path "/usr/local/smlnj/bin")
 (setenv "PATH" (concat "/Users/barry/opt/poly/bin:/usr/local/smlnj/bin:" (getenv "PATH")))
+
+(use-package smlfmt
+ :hook (sml-mode . smlfmt-format-on-save-mode)
+ :bind
+ (:map sml-mode-map
+   ("C-c r" . smlfmt-format-buffer)))
